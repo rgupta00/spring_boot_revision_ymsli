@@ -1,0 +1,10 @@
+package com.empapp.dao;
+@Entity
+@Table(name="emp_table")
+public class Employee {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
+	private String name;
+	private Double salary;
+}

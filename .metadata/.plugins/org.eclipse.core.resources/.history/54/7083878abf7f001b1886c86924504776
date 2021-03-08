@@ -1,0 +1,56 @@
+package com.empapp.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.empapp.dao.Employee;
+import com.empapp.dao.EmployeeRepo;
+@Service
+@Transactional
+public class EmployeeServiceImpl implements EmployeeService {
+
+	private EmployeeRepo empRepo;
+	
+	@Autowired
+	public EmployeeServiceImpl(EmployeeRepo empRepo) {
+		this.empRepo = empRepo;
+	}
+	
+	@GetMapping(path="employee", produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Employee>> allEmployees(){
+		List<Employee>emps= employeeService.getAll();
+		return new ResponseEntity<List<Employee>>(emps, HttpStatus.OK);
+	}
+	
+
+	@Override
+	public Employee getEmployeeById(int id) {
+		return empRepo.findById(id).orElseThrow(EmployeeNotFoundException:: new);
+	}
+
+	@Override
+	public Employee save(Employee emp) {
+		return empRepo.save(emp);
+	}
+
+	@Override
+	public Employee delete(int empId) {
+		Employee employeeToDelete=getEmployeeById(empId);
+		empRepo.delete(employeeToDelete);
+		return employeeToDelete;
+	}
+
+	@Override
+	public Employee update(int empId, Employee emp) {
+		Employee employeeToUpdate=getEmployeeById(empId);
+		//employeeToUpdate.setName(emp.getName());
+		employeeToUpdate.setSalary(emp.getSalary());
+		return empRepo.save(employeeToUpdate);
+	}
+
+}

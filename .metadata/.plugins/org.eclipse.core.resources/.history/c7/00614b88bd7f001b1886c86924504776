@@ -1,0 +1,31 @@
+package com.empapp;
+
+import javax.persistence.EntityManager;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import com.empapp.dao.Employee;
+import com.empapp.service.EmployeeService;
+@EnableTransactionManagement
+@SpringBootApplication
+public class EmpappApplication implements CommandLineRunner{
+
+	@Autowired
+	private EmployeeService employeeService;
+	
+	
+	public static void main(String[] args) {
+		SpringApplication.run(EmpappApplication.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		employeeService.addEmployee(new Employee("raj", 60.0));
+		employeeService.addEmployee(new Employee("ekta", 70.0));
+		System.out.println("---------");	
+	}
+}

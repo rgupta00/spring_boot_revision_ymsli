@@ -1,0 +1,6 @@
+package com.empapp.dao;
+import java.util.*;
+
+public interface EmployeeDao {
+	public List<Employee>  getAll();
+}

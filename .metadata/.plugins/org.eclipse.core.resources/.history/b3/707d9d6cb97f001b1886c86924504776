@@ -1,0 +1,12 @@
+package com.empapp.dao;
+
+import java.util.Arrays;
+import java.util.List;
+public class EmployeeDaoImpl implements EmployeeDao {
+
+	@Override
+	public List<Employee> getAll() {
+		return Arrays.asList(new Emp);
+	}
+
+}

@@ -1,0 +1,21 @@
+package com.empapp.controller;
+
+import com.empapp.dao.EmployeeDao;
+import com.empapp.dao.EmployeeDaoImplHib;
+import com.empapp.service.EmilService;
+import com.empapp.service.EmilServiceImpl;
+import com.empapp.service.EmployeeService;
+import com.empapp.service.EmployeeServiceImpl;
+
+public class Tester {
+	public static void main(String[] args) {
+		
+		EmilService emilService =new EmilServiceImpl();
+		
+		EmployeeDao dao=new EmployeeDaoImplHib();
+		
+		EmployeeService employeeService=new EmployeeServiceImpl(dao,emilService);
+		employeeService.getAll().forEach(c-> System.out.println(c));
+	}
+
+}

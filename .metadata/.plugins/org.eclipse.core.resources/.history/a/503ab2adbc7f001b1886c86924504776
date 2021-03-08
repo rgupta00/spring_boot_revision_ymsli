@@ -1,0 +1,32 @@
+package com.empapp.dao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class EmployeeDaoImpl implements EmployeeDao {
+
+	private EntityManager em;
+
+	@Autowired
+	public EmployeeDaoImpl(EntityManager em) {
+		this.em = em;
+	}
+
+	@Override
+	public List<Employee> getAll() {
+		System.out.println("1 version .....");
+		return em.createQuery("select e from Employee e", Employee.class).getResultList();
+	}
+
+	@Override
+	public Employee addEmployee(Employee employee) {
+		em.persist(employee);
+		return employee;
+	}
+
+}

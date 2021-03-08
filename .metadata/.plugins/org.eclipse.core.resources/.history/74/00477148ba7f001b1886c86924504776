@@ -1,0 +1,14 @@
+package com.empapp.controller;
+
+import com.empapp.service.EmployeeService;
+import com.empapp.service.EmployeeServiceImpl;
+
+public class Tester {
+	
+	public static void main(String[] args) {
+		
+		EmployeeService employeeService=new EmployeeServiceImpl();
+		employeeService.getAll().forEach(c-> System.out.println(c));
+	}
+
+}

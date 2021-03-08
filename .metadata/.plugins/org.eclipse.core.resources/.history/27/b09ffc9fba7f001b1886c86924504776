@@ -1,0 +1,11 @@
+package com.empapp.service;
+
+public class EmilServiceImpl implements EmilService {
+
+	@Override
+	public String sendEmail(String email) {
+		System.out.println("mail is send "+ email);
+		return "send";
+	}
+
+}
