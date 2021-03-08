@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Page Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type = "text/javascript">
+            $(document).ready(function () {
+                var employee = {};
+                getAllEmps();
+                $('#btnAddEmployee').click(function () {
+                	 employee.name = $('#txtName').val();
+                     employee.salary = $('#txtSalary').val();
+                     var employeeJSON = JSON.stringify(employee);
+                    $.ajax({
+                        url: 'employee',
+                        method: 'POST',
+                        data: employeeJSON,
+                        contentType: "application/json; charset=utf-8",
+                        success: function () {
+                            alert('Saved successfully!');
+                            getAllEmps();
+                        },
+                        error: function (error) {
+                        	console.log('error posting')
+                            alert(error);
+                        }
+                    })
+                    
+                })
+            });
+            
+            function getAllEmps() {
+                $.ajax({
+                    url: 'employee',
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        var tableBody = $('#tblEmployee tbody');
+                        tableBody.empty();
+                        $(data).each(function (index, element) {
+                        	tableBody.append('<tr><td>'+element.name+'</td><td>'+element.salary+'</td><td><button onclick = "deleteEmp('+element.id+')">Delete</button></td></tr>');
+                        })
+                    },
+                    error: function (error) {
+                        alert(error);
+                    }
+                });
+            }
+
+            function deleteEmp(id){
+                          $.ajax({
+                              url: 'employee/'+id,
+                              method: 'DELETE',
+                              success: function () {
+                                  alert('record has been deleted');
+                                  getAllEmps();
+                              },
+                              error: function (error) {
+                                  alert(error);
+                              }
+                          })
+                      }
+
+        </script>
+    </head>
+    <body>
+        <table border="1" style="border-collapse:collapse">
+            <tr>
+                <input id="txtId" type="text" hidden/>
+                <td>Employee Name</td>
+                <td><input id="txtName" type="text" /></td>
+            </tr>
+            <tr>
+                <td>Employee Salary</td>
+                <td><input id="txtSalary" type="text" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="button" id="btnAddEmployee" value="Add Employee" />
+                </td>
+            </tr>
+        </table>
+
+        <table id="tblEmployee" border="1" style="border-collapse:collapse">
+            <thead>
+                <tr>
+                    <th>Employee Name</th>
+                    <th>Employee Salary</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </body>
+</html>
+
+

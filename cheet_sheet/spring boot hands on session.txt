@@ -535,7 +535,7 @@ public class ScheduledJob {
 ______________________
 Spring Boot Actuator
 _______________________
-
+JMX
 Spring boot’s module Actuator allows you to monitor and manage 
 application usages in production environment, without coding and configuration for any of them.
  These monitoring and management information is exposed via REST like endpoint URLs.
@@ -551,7 +551,6 @@ management.endpoint.health.show-details=always
 
 Creating custom endpoint
 ________________________
-
 
 customize existing endpoint
 ________________________
@@ -609,6 +608,22 @@ ________________
 spring boot jsp
 ________________
 
+
+We need to put dependency:
+
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+
+
+spring.mvc.view.prefix:/WEB-INF/views/
+spring.mvc.view.suffix:.jsp
 
 @Controller
 public class TestController {
@@ -773,6 +788,7 @@ __________________
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.css"/>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.js"></script>
