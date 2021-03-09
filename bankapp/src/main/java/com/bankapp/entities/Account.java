@@ -1,4 +1,4 @@
-package com.bankapp.dao;
+package com.bankapp.entities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ public class Account {
 	private String accountType;
 
 	@JoinColumn(name = "acc_id")
-	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	
 	private List<TransactionHistory> histories = new ArrayList<>();
 

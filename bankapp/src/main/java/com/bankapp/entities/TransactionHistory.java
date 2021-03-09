@@ -1,4 +1,4 @@
-package com.bankapp.dao;
+package com.bankapp.entities;
 
 import java.util.Date;
 
@@ -17,17 +17,32 @@ public class TransactionHistory {
 	private double amount;
 	private Date timestamp;
 	private String txIniator;
+	private String txType;// deposit, withdraw, transfer
 
-	public TransactionHistory() {
-	}
 
-	public TransactionHistory(Integer fromAccount, Integer toAccount, double amount, String txIniator) {
+	public TransactionHistory(Integer fromAccount, Integer toAccount, double amount, 
+			String txIniator,
+			String txType) {
 		this.fromAccount = fromAccount;
 		this.toAccount = toAccount;
 		this.amount = amount;
 		this.timestamp = new Date();
 		this.txIniator = txIniator;
+		this.txType = txType;
 	}
+
+	public String getTxType() {
+		return txType;
+	}
+
+	public void setTxType(String txType) {
+		this.txType = txType;
+	}
+
+	public TransactionHistory() {
+	}
+
+	
 
 	public Integer getTxId() {
 		return txId;

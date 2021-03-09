@@ -1,7 +1,7 @@
 package com.bankapp.service;
 import java.util.*;
 
-import com.bankapp.dao.Account;
+import com.bankapp.entities.Account;
 public interface AccountService {
 	//mgr
 	public List<Account> getAllAccounts();

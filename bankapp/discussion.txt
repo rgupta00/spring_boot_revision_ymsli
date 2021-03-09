@@ -1,0 +1,44 @@
+
+Account
+	Customer customer
+		Address
+
+
+Account --------- Customer
+Customer --------- Address
+
+class Account{
+	id
+	name
+	balance
+	email
+	address
+	phone
+	type
+	List<TransctionHistroy> txHisty=.....
+
+}
+
+class Employee{
+	id
+	name
+	password
+	profile// mgr, admin, clerk
+	email
+	phone
+	address
+}
+class TransctionHistroy{
+	id
+	fromAccount
+	toAccount
+	amount
+	timestamp
+	txIniator
+
+
+}
+
+
+
+
